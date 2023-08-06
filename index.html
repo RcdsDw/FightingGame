@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Fighting Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style> 
+        * {
+            font-family: 'Press Start 2P';
+            box-sizing: border-box;
+        }
+        #restartBtn:hover {
+            transform: scale(1.1) rotate(1turn);
+        }
+    </style>
+</head>
+<body>
+    <div 
+        style="
+            position: relative; 
+            display:inline-block">
+        <div 
+            style="
+                position: absolute; 
+                display: flex; 
+                width: 100%; 
+                align-items: center; 
+                padding: 20px;">
+            <!-- Player Health -->
+            <div 
+                style="
+                    position: relative; 
+                    width: 100%; 
+                    display: flex; 
+                    justify-content: flex-end;
+                    border: 4px solid white;
+                    border-right: none;">
+                <div 
+                    style="
+                        background-color: red; 
+                        height: 30px; 
+                        width: 100%;">
+                </div>
+                <div 
+                    id="playerHealth" 
+                    style="
+                        position: absolute; 
+                        background: #818CF8; 
+                        top: 0; 
+                        top: 0; 
+                        right: 0; 
+                        bottom: 0; 
+                        width: 100%;">
+                </div>
+            </div>
+            <!-- Timer -->
+            <div 
+                id="timer" 
+                style="
+                    background-color: rgb(0, 0, 0); 
+                    height: 50px; 
+                    width: 100px; 
+                    flex-shrink: 0; 
+                    display: flex; 
+                    align-items: center; 
+                    justify-content: center; 
+                    font-size: x-large;
+                    color: white;
+                    border: 4px solid white;
+                    border-radius: 10px;">10
+            </div>
+            <!-- Enemy Health -->
+            <div 
+                style="
+                    position: relative; 
+                    width: 100%;
+                    border: 4px solid white;
+                    border-left: none;">
+                <div 
+                    style="
+                        background-color: red; 
+                        height: 30px; 
+                        width: 100%;">
+                </div>
+                <div 
+                    id="enemyHealth" 
+                    style="
+                        position: absolute; 
+                        background: #818CF8; 
+                        top: 0; 
+                        right: 0; 
+                        bottom: 0; 
+                        left: 0;">
+                </div>
+            </div>
+        </div>
+        <div 
+            id="displayText" 
+            style="
+                position: absolute; 
+                color: white; display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                top: 0; 
+                right: 0; 
+                bottom: 0; 
+                left: 0; 
+                font-size: 50px;">
+        </div>
+        <button 
+            id="restartBtn"
+            onclick="restart()" 
+            style="
+                position: absolute;
+                top: 54%;
+                left: 46%;
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                background: none; 
+                border: none;
+                cursor: pointer;
+                transition: 0.3s ease-in-out;
+                ">
+        </button>
+
+        <canvas></canvas>
+    </div>
+</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/classes.js"></script>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/9b62b45484.js" crossorigin="anonymous"></script>
+</html>
