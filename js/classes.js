@@ -20,20 +20,35 @@ class Sprite {
     }
 
     draw() {
-        ctx.drawImage(
-            this.image, 
-            this.framesCurrent * (this.image.width / this.framesMax),
-            0,
-            this.image.width / this.framesMax,
-            this.image.height,
-            this.position.x - this.offset.x, 
-            this.position.y - this.offset.y, 
-            (this.image.width / this.framesMax) * this.scale,
-            this.image.height * this.scale
-        )
+        if (this.isEnemy === true) {
+            ctx.drawImage(
+                this.image, 
+                (this.framesMax - this.framesCurrent - 1) * (this.image.width / this.framesMax),
+                0,
+                this.image.width / this.framesMax,
+                this.image.height,
+                this.position.x - this.offset.x, 
+                this.position.y - this.offset.y, 
+                (this.image.width / this.framesMax) * this.scale,
+                this.image.height * this.scale
+            )
+        } else {
+            ctx.drawImage(
+                this.image, 
+                this.framesCurrent * (this.image.width / this.framesMax),
+                0,
+                this.image.width / this.framesMax,
+                this.image.height,
+                this.position.x - this.offset.x, 
+                this.position.y - this.offset.y, 
+                (this.image.width / this.framesMax) * this.scale,
+                this.image.height * this.scale
+            )
+        }
     }
 
     animateFrame() {
+        enemy.framesHold = 20
         this.framesElapsed++
         if (this.framesElapsed % this.framesHold === 0) {
             if (this.framesCurrent < this.framesMax - 1) {
@@ -44,23 +59,8 @@ class Sprite {
         }
     }
 
-    // Try new animated frame for reverse frames assets
-
-    animateFrameEnemy() {
-        this.framesHold = 60
-        this.framesElapsed++
-        if (this.framesElapsed % this.framesHold === 0) {
-            if (this.framesCurrent > 0) {
-                this.framesCurrent--
-            } else {
-                this.framesCurrent = framesMax
-            }
-        }
-    }
-
     update() {
         this.draw()
-        enemy.animateFrameEnemy()
         this.animateFrame()
     }
 }
@@ -74,7 +74,8 @@ class Fighter extends Sprite {
         framesMax = 1,
         offset = {x: 0, y: 0},
         sprites,
-        attackBox = { offset: {}, width: undefined, height: undefined}
+        attackBox = { offset: {}, width: undefined, height: undefined},
+        isEnemy = false
     }) {
         super({
             position,
@@ -105,12 +106,12 @@ class Fighter extends Sprite {
         this.framesHold = 12
         this.sprites = sprites
         this.dead = false
+        this.isEnemy = isEnemy
 
         for (const sprite in this.sprites) {
             sprites[sprite].image = new Image()
             sprites[sprite].image.src = sprites[sprite].imageSrc
         }
-        console.log(this.sprites)
     }
 
     update() {
@@ -206,7 +207,6 @@ d
                     this.image = this.sprites.run.image
                     this.framesMax = this.sprites.run.framesMax
                     this.framesCurrent = 0
-                    this.framesElapsed = 0
                 }
                 break;
             case 'jump':

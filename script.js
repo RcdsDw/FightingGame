@@ -151,7 +151,8 @@ const enemy = new Fighter({
         },
         width: 150,
         height: 50
-    }
+    },
+    isEnemy: true
 })
 
 const keys = {
@@ -260,6 +261,7 @@ function animate() {
 animate()
 
 window.addEventListener('keydown', (event) => {
+    if (event.repeat) return;
 
     if (!player.dead) {
         switch (event.key) {
