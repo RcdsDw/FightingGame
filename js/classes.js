@@ -13,8 +13,8 @@ class Sprite {
         this.image.src = imageSrc
         this.scale = scale
         this.framesMax = framesMax
-        this.framesCurrent = 0,
-        this.framesElapsed = 0,
+        this.framesCurrent = 0
+        this.framesElapsed = 0
         this.framesHold = 12
         this.offset = offset
     }
@@ -86,7 +86,7 @@ class Fighter extends Sprite {
         this.isJumping
         this.framesCurrent = 0
         this.framesElapsed = 0
-        this.framesHold = 18
+        this.framesHold = 12
         this.sprites = sprites
         this.dead = false
 
@@ -112,14 +112,14 @@ class Fighter extends Sprite {
 
         /* ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height) */
 
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
+
         if (this.position.x < 0) {
             this.position.x = 0
         } else if (this.position.x + this.width > canvas.width) {
             this.position.x = canvas.width - this.width
         }
-
-        this.position.x += this.velocity.x
-        this.position.y += this.velocity.y
 
         // Gravity Function
 
@@ -145,7 +145,6 @@ d
     }
 
     takeHit() {
-        this.switchSprite('takeHit')
         this.health -= 10
 
         if (this.health <= 0) {
@@ -157,7 +156,7 @@ d
 
     switchSprite(sprite) {
         if (this.image === this.sprites.death.image) {
-            if(this.framesCurrent < this.sprites.death.framesMax -1) {
+            if(this.framesCurrent === this.sprites.death.framesMax -1) {
                 this.dead = true
                 return
             }
@@ -176,14 +175,14 @@ d
                 if (this.image !== this.sprites.idle.image) {
                     this.image = this.sprites.idle.image
                     this.framesMax = this.sprites.idle.framesMax
-                    this.framesCurrents = 0
+                    this.framesCurrent = 0
                 }
                 break;
             case 'run':
                 if (this.image !== this.sprites.run.image) {
                     this.image = this.sprites.run.image
                     this.framesMax = this.sprites.run.framesMax
-                    this.framesCurrents = 0
+                    this.framesCurrent = 0
                     this.framesElapsed = 0
                 }
                 break;
@@ -191,35 +190,35 @@ d
                 if (this.image !== this.sprites.jump.image) {
                     this.image = this.sprites.jump.image
                     this.framesMax = this.sprites.jump.framesMax
-                    this.framesCurrents = 0
+                    this.framesCurrent = 0
                 }
                 break;
             case 'fall':
                 if (this.image !== this.sprites.fall.image) {
                     this.image = this.sprites.fall.image
                     this.framesMax = this.sprites.fall.framesMax
-                    this.framesCurrents = 0
+                    this.framesCurrent = 0
                 }
                 break;
             case 'attack1':
                 if (this.image !== this.sprites.attack1.image) {
                     this.image = this.sprites.attack1.image
                     this.framesMax = this.sprites.attack1.framesMax
-                    this.framesCurrents = 0
+                    this.framesCurrent = 0
                 }
                 break;
             case 'takeHit':
                 if (this.image !== this.sprites.takeHit.image) {
                     this.image = this.sprites.takeHit.image
                     this.framesMax = this.sprites.takeHit.framesMax
-                    this.framesCurrents = 0
+                    this.framesCurrent = 0
                 }
                 break;
             case 'death':
                 if (this.image !== this.sprites.death.image) {
                     this.image = this.sprites.death.image
                     this.framesMax = this.sprites.death.framesMax
-                    this.framesCurrents = 0
+                    this.framesCurrent = 0
                 }
                 break
         }

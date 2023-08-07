@@ -6,7 +6,7 @@ canvas.height = 576
 
 ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-const gravity = 0.6
+const gravity = 0.7
 
 const background = new Sprite({
     position: {
@@ -18,11 +18,11 @@ const background = new Sprite({
 
 const shop = new Sprite({
     position: {
-        x: 610,
-        y: 115
+        x: 600,
+        y: 128
     },
     imageSrc: './assets/shop.png',
-    scale: 2.85,
+    scale: 2.75,
     framesMax: 6
 })
 
@@ -169,6 +169,8 @@ function animate() {
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     background.update()
     shop.update()
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.15)'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
     enemy.update()
 
@@ -178,10 +180,10 @@ function animate() {
     // Player Movement
 
     if (keys.q.pressed && player.lastKey === 'q') {
-        player.velocity.x = -4
+        player.velocity.x = -5
         player.switchSprite('run')
     } else if (keys.d.pressed && player.lastKey === 'd') {
-        player.velocity.x = 4
+        player.velocity.x = 5
         player.switchSprite('run')
     } else {
         player.switchSprite('idle')
@@ -196,10 +198,10 @@ function animate() {
     // Enemy Movement
 
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
-        enemy.velocity.x = -4
+        enemy.velocity.x = -5
         enemy.switchSprite('run')
     } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
-        enemy.velocity.x = 4
+        enemy.velocity.x = 5
         enemy.switchSprite('run')
     } else {
         enemy.switchSprite('idle')
@@ -251,7 +253,7 @@ animate()
 
 window.addEventListener('keydown', (event) => {
 
-    if (player.dead === false) {
+    if (!player.dead) {
         switch (event.key) {
 
             // Player Keys
@@ -272,7 +274,7 @@ window.addEventListener('keydown', (event) => {
                 break;
         }
     }
-    if (enemy.dead === false) {
+    if (!enemy.dead) {
         switch (event.key) {
 
             // Enemy Keys
