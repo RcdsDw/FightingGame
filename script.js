@@ -67,6 +67,10 @@ const player = new Fighter({
             imageSrc: './assets/player/Attack1.png',
             framesMax: 6
         },
+        attack2: {
+            imageSrc: './assets/player/Attack2.png',
+            framesMax: 6
+        },
         takeHit: {
             imageSrc: './assets/player/Take hit.png',
             framesMax: 4
@@ -125,6 +129,10 @@ const enemy = new Fighter({
         },
         attack1: {
             imageSrc: './assets/enemy/Attack1.png',
+            framesMax: 4
+        },
+        attack2: {
+            imageSrc: './assets/enemy/Attack2.png',
             framesMax: 4
         },
         takeHit: {
