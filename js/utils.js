@@ -20,6 +20,7 @@ function restart() {
 function determineWinner({ player, enemy, timerId }) {
     clearTimeout(timerId)
     document.querySelector('#displayText').style.display = 'flex'
+    document.querySelector('#restartBtn').style.display = 'flex'
     let restart = document.querySelector('#restartBtn').innerHTML = '<i class="fa-solid fa-arrow-rotate-right" style="color: #ffffff; font-size: 70px;"></i>'
     if (player.health === enemy.health) {
         document.querySelector('#displayText').innerHTML = 'Tie'
@@ -35,7 +36,7 @@ function determineWinner({ player, enemy, timerId }) {
 
 // Decrease Timer
 
-let timer = 60
+let timer = 5
 let timerId
 function decreaseTimer() {
     if (timer > 0) {
@@ -45,6 +46,6 @@ function decreaseTimer() {
     }
 
     if (timer === 0) {
-        determineWinner({ player, enemy })
+        determineWinner({ player, enemy, timerId })
     }
 }
